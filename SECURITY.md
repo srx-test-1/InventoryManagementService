@@ -79,28 +79,28 @@ The following vulnerable dependencies were also updated as part of the security 
 ### Vulnerability Scanning
 All dependencies scanned using GitHub Advisory Database:
 - ✅ jackson-core 2.15.0: No vulnerabilities
-- ✅ jackson-databind 2.13.4.2: No vulnerabilities
+- ✅ jackson-databind 2.15.0: No vulnerabilities
 - ✅ commons-fileupload 1.6.0: No vulnerabilities
 - ✅ All other dependencies: No vulnerabilities
 
 ### Additional Vulnerabilities Patched (Post-Initial Update)
 
-During comprehensive security review, additional vulnerabilities were identified and patched:
+During comprehensive security review, additional vulnerabilities were identified in the intermediate versions and were patched:
 
-1. **jackson-core 2.13.2 → 2.15.0**
-   - **Vulnerability**: StackOverflowError when processing deeply nested data
+1. **jackson-core: 2.8.11 → 2.15.0**
+   - **Vulnerability**: StackOverflowError when processing deeply nested data (identified in intermediate version 2.13.2)
    - **CVE**: Not assigned
    - **Severity**: Medium
-   - **Fix**: Upgraded to 2.15.0
+   - **Fix**: Upgraded directly to 2.15.0
 
-2. **jackson-databind 2.13.2.2 → 2.15.0**
-   - **Vulnerability**: Multiple Uncontrolled Resource Consumption issues
+2. **jackson-databind: 2.8.11 → 2.15.0**
+   - **Vulnerability**: Multiple Uncontrolled Resource Consumption issues (identified in intermediate version 2.13.2.2)
    - **CVE**: Various
    - **Severity**: High
-   - **Fix**: Upgraded to 2.15.0 (all Jackson libraries unified at 2.15.0)
+   - **Fix**: Upgraded directly to 2.15.0 (all Jackson libraries unified at 2.15.0)
 
-3. **commons-fileupload 1.5 → 1.6.0**
-   - **Vulnerability**: FileUpload DoS via part headers
+3. **commons-fileupload: 1.3.3 → 1.6.0**
+   - **Vulnerability**: FileUpload DoS via part headers (identified in intermediate version 1.5)
    - **CVE**: Not yet assigned
    - **Severity**: Medium
    - **Fix**: Upgraded to 1.6.0
