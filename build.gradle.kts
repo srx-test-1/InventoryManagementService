@@ -32,8 +32,8 @@ tasks.register<Copy>("unzipNewrelic") {
 
 dependencies {
     implementation ("commons-fileupload:commons-fileupload:1.5")
-    implementation ("org.apache.commons:commons-lang3:3.9")
-    implementation ("org.apache.commons:commons-collections4:4.4")
+    implementation ("org.apache.commons:commons-lang3:3.12.0")
+    implementation ("org.apache.commons:commons-collections4:4.5.0-M1")
 
     implementation ("org.springframework.boot:spring-boot-starter-web:2.6.6") // Updated for CVE-2022-22965 (Spring4Shell)
 
@@ -53,7 +53,7 @@ dependencies {
 
     implementation ("com.fasterxml.jackson.core:jackson-annotations:2.13.2")
 
-    implementation ("commons-net:commons-net:3.6")
+    implementation ("commons-net:commons-net:3.9.0")
 
 
     testImplementation ("org.junit.jupiter:junit-jupiter-api:5.8.1")

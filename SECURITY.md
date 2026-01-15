@@ -37,6 +37,9 @@ The following vulnerable dependencies were also updated as part of the security 
 |------------|------------------|-----------------|----------------------|
 | Log4j | 2.14.1 | 2.17.1 | CVE-2021-44228 (Log4Shell), CVE-2021-45046, CVE-2021-45105 |
 | commons-fileupload | 1.3.3 | 1.5 | Multiple file upload vulnerabilities |
+| commons-lang3 | 3.9 | 3.12.0 | Multiple security and stability improvements |
+| commons-collections4 | 4.4 | 4.5.0-M1 | Security improvements |
+| commons-net | 3.6 | 3.9.0 | Multiple security fixes |
 | jackson-databind | 2.8.11 | 2.13.2.2 | Multiple deserialization vulnerabilities |
 | jackson-core | 2.8.11 | 2.13.2 | Security and stability improvements |
 | jackson-annotations | 2.8.11 | 2.13.2 | Security and stability improvements |
