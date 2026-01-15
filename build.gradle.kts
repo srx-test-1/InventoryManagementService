@@ -31,29 +31,29 @@ tasks.register<Copy>("unzipNewrelic") {
 }
 
 dependencies {
-    implementation ("commons-fileupload:commons-fileupload:1.3.3")
-    implementation ("org.apache.commons:commons-lang3:3.9")
-    implementation ("org.apache.commons:commons-collections4:4.4")
+    implementation ("commons-fileupload:commons-fileupload:1.6.0")
+    implementation ("org.apache.commons:commons-lang3:3.12.0")
+    implementation ("org.apache.commons:commons-collections4:4.5.0-M1")
 
-    implementation ("org.springframework.boot:spring-boot-starter-web:2.5.10") // Secure and stable
+    implementation ("org.springframework.boot:spring-boot-starter-web:2.6.6") // Updated for CVE-2022-22965 (Spring4Shell)
 
-    // Upgrade to Log4j2 which resolves vulnerabilities found in Log4j 1.x
-    implementation ("org.apache.logging.log4j:log4j-core:2.14.1")
-    implementation ("org.apache.logging.log4j:log4j-api:2.14.1")
+    // Upgrade to Log4j2 which resolves vulnerabilities found in Log4j 1.x and Log4Shell (CVE-2021-44228)
+    implementation ("org.apache.logging.log4j:log4j-core:2.17.1")
+    implementation ("org.apache.logging.log4j:log4j-api:2.17.1")
 
     // Upgrade to latest Gson version
-    implementation ("com.google.code.gson:gson:2.8.9")
+    implementation ("com.google.code.gson:gson:2.10.1")
 
 
-    implementation ("com.google.guava:guava:18.0")
+    implementation ("com.google.guava:guava:31.1-jre")
 
-    implementation ("com.fasterxml.jackson.core:jackson-databind:2.8.11")
+    implementation ("com.fasterxml.jackson.core:jackson-databind:2.15.0")
 
-    implementation ("com.fasterxml.jackson.core:jackson-core:2.8.11")
+    implementation ("com.fasterxml.jackson.core:jackson-core:2.15.0")
 
-    implementation ("com.fasterxml.jackson.core:jackson-annotations:2.8.11")
+    implementation ("com.fasterxml.jackson.core:jackson-annotations:2.15.0")
 
-    implementation ("commons-net:commons-net:3.6")
+    implementation ("commons-net:commons-net:3.9.0")
 
 
     testImplementation ("org.junit.jupiter:junit-jupiter-api:5.8.1")
