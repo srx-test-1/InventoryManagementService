@@ -31,7 +31,7 @@ tasks.register<Copy>("unzipNewrelic") {
 }
 
 dependencies {
-    implementation ("commons-fileupload:commons-fileupload:1.5")
+    implementation ("commons-fileupload:commons-fileupload:1.6.0")
     implementation ("org.apache.commons:commons-lang3:3.12.0")
     implementation ("org.apache.commons:commons-collections4:4.5.0-M1")
 
@@ -47,11 +47,11 @@ dependencies {
 
     implementation ("com.google.guava:guava:31.1-jre")
 
-    implementation ("com.fasterxml.jackson.core:jackson-databind:2.13.2.2")
+    implementation ("com.fasterxml.jackson.core:jackson-databind:2.15.0")
 
-    implementation ("com.fasterxml.jackson.core:jackson-core:2.13.2")
+    implementation ("com.fasterxml.jackson.core:jackson-core:2.15.0")
 
-    implementation ("com.fasterxml.jackson.core:jackson-annotations:2.13.2")
+    implementation ("com.fasterxml.jackson.core:jackson-annotations:2.15.0")
 
     implementation ("commons-net:commons-net:3.9.0")
 
