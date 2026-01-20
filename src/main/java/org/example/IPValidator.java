@@ -19,6 +19,12 @@ public class IPValidator {
     // Pattern to detect short form IPv4 (e.g., 127.1 instead of 127.0.0.1)
     private static final Pattern SHORT_IPV4_PATTERN = Pattern.compile("^\\d+\\.\\d+$");
     
+    // Pattern to detect IPv6 addresses (basic check)
+    private static final Pattern IPV6_PATTERN = Pattern.compile("^[0-9a-fA-F:]+$");
+    
+    // Pattern to extract IPv4 from IPv6-mapped addresses (::ffff:x.x.x.x)
+    private static final Pattern IPV6_MAPPED_IPV4_PATTERN = Pattern.compile("::ffff:(\\d+\\.\\d+\\.\\d+\\.\\d+)$");
+    
     /**
      * Checks if an IP address is public.
      * 
@@ -37,8 +43,12 @@ public class IPValidator {
             return false;
         }
         
-        // Normalize the input
-        String normalizedIp = ipAddress.trim().toLowerCase();
+        // Normalize the input (null check already done above)
+        String normalizedIp = ipAddress.trim();
+        if (normalizedIp.isEmpty()) {
+            return false;
+        }
+        normalizedIp = normalizedIp.toLowerCase();
         
         // Check for short form IPv4 addresses (e.g., 127.1)
         // These should be treated as non-public to prevent SSRF
@@ -58,16 +68,22 @@ public class IPValidator {
         
         // Check for IPv6 addresses that map to IPv4 loopback
         // e.g., ::ffff:127.0.0.1 or ::1
-        if (normalizedIp.contains(":")) {
+        // Only process if it looks like an IPv6 address (contains : and no invalid chars for IPv6)
+        if (normalizedIp.contains(":") && IPV6_PATTERN.matcher(normalizedIp.replaceAll("[\\[\\]]", "")).find()) {
+            // Remove brackets if present (e.g., [::1])
+            String cleanedIp = normalizedIp.replaceAll("[\\[\\]]", "");
+            
             // Check for IPv6 loopback
-            if (normalizedIp.equals("::1") || normalizedIp.startsWith("::1/")) {
+            if (cleanedIp.equals("::1") || cleanedIp.startsWith("::1/")) {
                 return false;
             }
             
             // Check for IPv4-mapped IPv6 addresses pointing to loopback/private
-            if (normalizedIp.contains("::ffff:")) {
-                // Extract the IPv4 part
-                String ipv4Part = normalizedIp.substring(normalizedIp.lastIndexOf(":") + 1);
+            // Use regex pattern matching for more robust extraction
+            java.util.regex.Matcher matcher = IPV6_MAPPED_IPV4_PATTERN.matcher(cleanedIp);
+            if (matcher.find()) {
+                // Extract the IPv4 part using the captured group
+                String ipv4Part = matcher.group(1);
                 // Recursively check if the IPv4 part is public
                 return isPublic(ipv4Part);
             }
