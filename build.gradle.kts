@@ -12,6 +12,8 @@ repositories {
     mavenCentral()
 }
 
+val jacksonVersion = "2.15.2"
+
 tasks.register("downloadNewrelic") {
     doLast {
             val newrelicDir = file("newrelic")
@@ -47,11 +49,11 @@ dependencies {
 
     implementation ("com.google.guava:guava:18.0")
 
-    implementation ("com.fasterxml.jackson.core:jackson-databind:2.8.11")
+    implementation ("com.fasterxml.jackson.core:jackson-databind:$jacksonVersion")
 
-    implementation ("com.fasterxml.jackson.core:jackson-core:2.8.11")
+    implementation ("com.fasterxml.jackson.core:jackson-core:$jacksonVersion")
 
-    implementation ("com.fasterxml.jackson.core:jackson-annotations:2.8.11")
+    implementation ("com.fasterxml.jackson.core:jackson-annotations:$jacksonVersion")
 
     implementation ("commons-net:commons-net:3.6")
 
