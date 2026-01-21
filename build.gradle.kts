@@ -12,8 +12,7 @@ repositories {
     mavenCentral()
 }
 
-val jacksonVersion = "2.12.7"
-val jacksonDatabindVersion = "2.12.7.1"
+val jacksonVersion = "2.15.2"
 
 tasks.register("downloadNewrelic") {
     doLast {
@@ -50,7 +49,7 @@ dependencies {
 
     implementation ("com.google.guava:guava:18.0")
 
-    implementation ("com.fasterxml.jackson.core:jackson-databind:$jacksonDatabindVersion")
+    implementation ("com.fasterxml.jackson.core:jackson-databind:$jacksonVersion")
 
     implementation ("com.fasterxml.jackson.core:jackson-core:$jacksonVersion")
 
