@@ -168,6 +168,36 @@ class FuzzyServiceTest {
         assertTrue(exception.getMessage().contains("Base URL cannot be null or empty"));
     }
     
+    @Test
+    void testBuildQueryUrl_WithNullQueryParam_ThrowsException() {
+        IllegalArgumentException exception = assertThrows(
+            IllegalArgumentException.class,
+            () -> service.buildQueryUrl("http://localhost:8080", null, "value")
+        );
+        
+        assertTrue(exception.getMessage().contains("Query parameter name cannot be null or empty"));
+    }
+    
+    @Test
+    void testBuildQueryUrl_WithEmptyQueryParam_ThrowsException() {
+        IllegalArgumentException exception = assertThrows(
+            IllegalArgumentException.class,
+            () -> service.buildQueryUrl("http://localhost:8080", "  ", "value")
+        );
+        
+        assertTrue(exception.getMessage().contains("Query parameter name cannot be null or empty"));
+    }
+    
+    @Test
+    void testBuildQueryUrl_WithNullQueryValue_ThrowsException() {
+        IllegalArgumentException exception = assertThrows(
+            IllegalArgumentException.class,
+            () -> service.buildQueryUrl("http://localhost:8080", "param", null)
+        );
+        
+        assertTrue(exception.getMessage().contains("Query parameter value cannot be null"));
+    }
+    
     // Tests for validateCallbackUrl
     
     @Test

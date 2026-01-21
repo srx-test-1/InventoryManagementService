@@ -61,6 +61,12 @@ public class FuzzyService {
         if (baseUrl == null || baseUrl.trim().isEmpty()) {
             throw new IllegalArgumentException("Base URL cannot be null or empty");
         }
+        if (queryParam == null || queryParam.trim().isEmpty()) {
+            throw new IllegalArgumentException("Query parameter name cannot be null or empty");
+        }
+        if (queryValue == null) {
+            throw new IllegalArgumentException("Query parameter value cannot be null");
+        }
         
         // Build the URL with query parameters
         UriComponentsBuilder builder = UriComponentsBuilder.fromUriString(baseUrl)
@@ -92,7 +98,11 @@ public class FuzzyService {
             URI uri = builder.build().toUri();
             String host = uri.getHost();
             return host != null && ALLOWED_HOSTS.contains(host);
+        } catch (IllegalArgumentException e) {
+            // Invalid URL format
+            return false;
         } catch (Exception e) {
+            // Unexpected error during URL parsing
             return false;
         }
     }
