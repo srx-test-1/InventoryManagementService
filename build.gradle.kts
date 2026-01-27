@@ -31,24 +31,19 @@ tasks.register<Copy>("unzipNewrelic") {
 }
 
 dependencies {
+    // Import Spring Framework BOM to override version to 5.3.34 (patches CVE-2024-22262)
+    implementation(platform("org.springframework:spring-framework-bom:5.3.34"))
+    
     implementation ("commons-fileupload:commons-fileupload:1.3.3")
     implementation ("org.apache.commons:commons-lang3:3.9")
     implementation ("org.apache.commons:commons-collections4:4.4")
 
-    implementation ("org.springframework.boot:spring-boot-starter-web:2.5.10") // Secure and stable
-    
-    // Override Spring Framework version to patch CVE-2024-22262 (URL parsing vulnerability)
-    implementation ("org.springframework:spring-web:5.3.34")
-    implementation ("org.springframework:spring-webmvc:5.3.34")
-    implementation ("org.springframework:spring-core:5.3.34")
-    implementation ("org.springframework:spring-beans:5.3.34")
-    implementation ("org.springframework:spring-context:5.3.34")
-    implementation ("org.springframework:spring-aop:5.3.34")
-    implementation ("org.springframework:spring-expression:5.3.34")
+    // Upgraded from 2.5.10 to 2.7.18 to get latest stable Spring Boot 2.x release
+    implementation ("org.springframework.boot:spring-boot-starter-web:2.7.18")
 
-    // Upgrade to Log4j2 which resolves vulnerabilities found in Log4j 1.x
-    implementation ("org.apache.logging.log4j:log4j-core:2.14.1")
-    implementation ("org.apache.logging.log4j:log4j-api:2.14.1")
+    // Upgrade to Log4j2 2.17.1 which resolves Log4Shell and other vulnerabilities (CVE-2021-44228, CVE-2021-45046, CVE-2021-45105)
+    implementation ("org.apache.logging.log4j:log4j-core:2.17.1")
+    implementation ("org.apache.logging.log4j:log4j-api:2.17.1")
 
     // Upgrade to latest Gson version
     implementation ("com.google.code.gson:gson:2.8.9")
