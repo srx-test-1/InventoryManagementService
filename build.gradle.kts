@@ -36,6 +36,15 @@ dependencies {
     implementation ("org.apache.commons:commons-collections4:4.4")
 
     implementation ("org.springframework.boot:spring-boot-starter-web:2.5.10") // Secure and stable
+    
+    // Override Spring Framework version to patch CVE-2024-22262 (URL parsing vulnerability)
+    implementation ("org.springframework:spring-web:5.3.34")
+    implementation ("org.springframework:spring-webmvc:5.3.34")
+    implementation ("org.springframework:spring-core:5.3.34")
+    implementation ("org.springframework:spring-beans:5.3.34")
+    implementation ("org.springframework:spring-context:5.3.34")
+    implementation ("org.springframework:spring-aop:5.3.34")
+    implementation ("org.springframework:spring-expression:5.3.34")
 
     // Upgrade to Log4j2 which resolves vulnerabilities found in Log4j 1.x
     implementation ("org.apache.logging.log4j:log4j-core:2.14.1")
