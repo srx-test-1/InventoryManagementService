@@ -31,15 +31,23 @@ tasks.register<Copy>("unzipNewrelic") {
 }
 
 dependencies {
+    // Import Spring Boot BOM for dependency management
+    implementation(platform("org.springframework.boot:spring-boot-dependencies:2.7.18"))
+    
+    // Import Spring Framework BOM to override version to 5.3.34 (patches CVE-2024-22262)
+    // Using enforcedPlatform to ensure override takes precedence over Spring Boot's managed version
+    implementation(enforcedPlatform("org.springframework:spring-framework-bom:5.3.34"))
+    
     implementation ("commons-fileupload:commons-fileupload:1.3.3")
     implementation ("org.apache.commons:commons-lang3:3.9")
     implementation ("org.apache.commons:commons-collections4:4.4")
 
-    implementation ("org.springframework.boot:spring-boot-starter-web:2.5.10") // Secure and stable
+    // Upgraded from 2.5.10 to 2.7.18 to get the latest stable Spring Boot 2.x release
+    implementation ("org.springframework.boot:spring-boot-starter-web:2.7.18")
 
-    // Upgrade to Log4j2 which resolves vulnerabilities found in Log4j 1.x
-    implementation ("org.apache.logging.log4j:log4j-core:2.14.1")
-    implementation ("org.apache.logging.log4j:log4j-api:2.14.1")
+    // Add Log4j2 core for application code that uses Log4j APIs (version managed by Spring Boot 2.7.18: 2.17.2)
+    implementation ("org.apache.logging.log4j:log4j-core")
+    implementation ("org.apache.logging.log4j:log4j-api")
 
     // Upgrade to latest Gson version
     implementation ("com.google.code.gson:gson:2.8.9")
